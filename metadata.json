@@ -1,0 +1,8 @@
+{
+  "name": "Generator LPJ Bendahara BOS Madrasah",
+  "description": "Aplikasi Pembuat Laporan Pertanggungjawaban (LPJ) Bendahara Dana BOS Madrasah Kemenag Otomatis sesuai Juknis",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

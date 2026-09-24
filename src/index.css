@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #faf5e6;
+    color: #1e293b;
+  }
+}
+
+/* ========================================================== */
+/* GOLDEN THEME AMBIENT BACKDROP                              */
+/* ========================================================== */
+.golden-bg-pattern {
+  background-color: #fbf6e9;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(245, 212, 107, 0.28) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(230, 185, 60, 0.22) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(212, 160, 23, 0.12) 0px, transparent 65%),
+    radial-gradient(at 100% 100%, rgba(247, 218, 128, 0.25) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(224, 172, 38, 0.2) 0px, transparent 50%);
+}
+
+.golden-glass-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 194, 107, 0.5);
+  box-shadow: 0 4px 20px -2px rgba(184, 134, 11, 0.08);
+}
+
+.font-serif-official {
+  font-family: 'Tinos', 'Times New Roman', Times, serif;
+}
+
+/* ========================================================== */
+/* FONT SCALING PRESETS FOR SCREEN & PRINT PREVIEW            */
+/* ========================================================== */
+.doc-scale-compact {
+  font-size: 13px;
+}
+.doc-scale-compact p, .doc-scale-compact li, .doc-scale-compact td {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.doc-scale-compact table {
+  font-size: 12px;
+}
+
+.doc-scale-normal {
+  font-size: 14.5px;
+}
+.doc-scale-normal p, .doc-scale-normal li, .doc-scale-normal td {
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+.doc-scale-normal table {
+  font-size: 13px;
+}
+
+.doc-scale-large {
+  font-size: 16px;
+}
+.doc-scale-large p, .doc-scale-large li, .doc-scale-large td {
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+.doc-scale-large table {
+  font-size: 13.5px;
+}
+
+.doc-scale-extra {
+  font-size: 17.5px;
+}
+.doc-scale-extra p, .doc-scale-extra li, .doc-scale-extra td {
+  font-size: 17px;
+  line-height: 1.55;
+}
+.doc-scale-extra table {
+  font-size: 14.5px;
+}
+
+/* ========================================================== */
+/* MEDIA PRINT CONFIGURATION: FULL PAGE COVERAGE & CRISP TEXT */
+/* ========================================================== */
+@media print {
+  @page {
+    /* 
+     * Setting margin: 0mm disables the default browser header (page title, timestamp)
+     * and browser footer (URL, page numbering) on Chrome, Edge, Safari, Firefox.
+     */
+    size: A4 portrait;
+    margin: 0mm !important;
+  }
+
+  @page :left {
+    margin: 0mm !important;
+  }
+
+  @page :right {
+    margin: 0mm !important;
+  }
+
+  @page :first {
+    margin: 0mm !important;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11.5pt !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #root,
+  .min-h-screen,
+  main,
+  #preview-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    gap: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  #lpj-print-container {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 11.5pt !important;
+    line-height: 1.45 !important;
+    color: #000000 !important;
+  }
+
+  .no-print,
+  header,
+  nav,
+  aside {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Sheet / Halaman Cetak Mandiri: 1 Halaman Per Dokumen / Menu */
+  .print-sheet {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    clear: both;
+    margin: 0 auto !important;
+    /* Standar batas dinas resmi yang memenuhi halaman: Kiri 2.0cm (untuk staples/jilid), Kanan 1.2cm, Atas 1.5cm, Bawah 1.5cm */
+    padding: 1.5cm 1.2cm 1.5cm 2.0cm !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100vh !important;
+  }
+
+  /* Lembar Pertama tidak perlu break-before */
+  .print-sheet:first-child,
+  #lpj-print-container > .print-sheet:first-of-type {
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
+
+  /* Halaman terakhir TIDAK boleh ada page-break-after agar tidak ada lembar kosong di akhir */
+  .print-sheet:last-child,
+  #lpj-print-container > .print-sheet:last-of-type {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  /* Lampiran Foto Dokumentasi: WAJIB HALAMAN TERPISAH MANDIRI */
+  .lampiran-foto-sheet {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
+    clear: both !important;
+    margin-top: 0 !important;
+  }
+
+  /* Format Sampul / Cover Pas 1 Halaman Penuh */
+  .print-cover-frame {
+    min-height: 25.5cm !important;
+    height: 100% !important;
+    max-height: 26.5cm !important;
+    padding: 1.2cm 1.0cm !important;
+    margin: 0 !important;
+    border: 3.5pt double #000000 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  /* Teks & Paragraf di Cetak: Jelas, Tegas, Memenuhi Halaman */
+  #lpj-print-container p,
+  #lpj-print-container li,
+  #lpj-print-container ol,
+  #lpj-print-container ul {
+    font-size: 11.5pt !important;
+    line-height: 1.45 !important;
+    color: #000000 !important;
+  }
+
+  /* Aturan Tabel Cetak - Memenuhi 100% Lebar Halaman */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    page-break-inside: auto;
+    break-inside: auto;
+    margin-top: 6pt !important;
+    margin-bottom: 8pt !important;
+    font-size: 10pt !important;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  th {
+    border: 1px solid #000000 !important;
+    padding: 4.5pt 5pt !important;
+    color: #000000 !important;
+    background-color: #f1f5f9 !important;
+    font-size: 10pt !important;
+    font-weight: bold !important;
+  }
+
+  td {
+    border: 1px solid #000000 !important;
+    padding: 4pt 4.5pt !important;
+    color: #000000 !important;
+    font-size: 9.5pt !important;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  .no-border-table th, 
+  .no-border-table td,
+  table.no-border th,
+  table.no-border td,
+  table.no-border-table th,
+  table.no-border-table td {
+    border: none !important;
+    padding: 2.5pt 3.5pt !important;
+    font-size: 11.5pt !important;
+    background-color: transparent !important;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .signature-block {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-top: 16pt !important;
+    font-size: 11.5pt !important;
+  }
+
+  .signature-block p {
+    font-size: 11.5pt !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
